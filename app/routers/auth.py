@@ -10,4 +10,3 @@ def login(loginDetailes : UserInLogin):
 @authRouter.post("/Signup")
 def signUp(signUpDetails : UserInCreate):
     return {"data":signUpDetails}
-
