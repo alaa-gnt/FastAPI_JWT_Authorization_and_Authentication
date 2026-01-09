@@ -1,9 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from decouple import config
 
-#defining our URL to the database (shouldb be stored at .env file)
-SQLALCHEMY_DATABASE_URL = 'postgresql://user:password@localhost:5432/postgres'
+#defining our URL to the database (read from .env file)
+SQLALCHEMY_DATABASE_URL = config("DATABASE_URL", default='postgresql://user:password@localhost:5432/postgres')
 
 #creating the core of the database instance this way
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
@@ -18,4 +19,4 @@ def get_db():
     try: # to catch erros
         yield db # create the db
     finally:
-        db.close
+        db.close()
